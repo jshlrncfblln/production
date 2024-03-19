@@ -46,7 +46,7 @@ function LoginModal({ isOpen, onClose }) {
                 </div>
                 <div className="hidden items-center justify-center text-center lg:flex lg:flex-col lg:w-1/2">
                     <h2 className="text-2xl font-bold text-gray-700">Balai<span className='text-sky-500'>Finder</span></h2>
-                    <img src="./public/assets/Balaifinder.png" className='object-center object-cover' alt="" />
+                    <img src="/assets/Balaifinder.png" className='object-center object-cover' alt="" />
                 </div>
                 <div className="w-full lg:w-1/2">
                     <p className="text-xl text-gray-600 text-center">Welcome Back!</p>
