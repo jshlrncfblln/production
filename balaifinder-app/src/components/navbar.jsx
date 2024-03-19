@@ -120,7 +120,7 @@ function Navbar() {
     return (
         <div className="flex bg-white shadow items-center justify-between gap-8 p-3 w-full">
             <div className='flex items-center'>
-                <img src="/public/assets/BalaiFinder.png" alt="" height={50} width={50} />
+                <img src="/assets/BalaiFinder.png" alt="" height={50} width={50} />
                 <Link to="/" className="font-bold text-3xl">Balai<span className='text-sky-500'>Finder</span></Link>
             </div>
             <div className="md:hidden">
