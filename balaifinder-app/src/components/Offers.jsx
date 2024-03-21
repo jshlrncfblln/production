@@ -3,7 +3,7 @@
 
 function Offers(){
     return (
-        <div className="bg-pearl px-6 pt-16 pb-20 lg:px-8 lg:pt-24 lg:pb-28">
+        <section className="bg-[#F5FEFD] px-6 pt-16 pb-20 lg:px-8 lg:pt-24 lg:pb-28">
             <div className="mx-auto max-w-7xl">
                     <div className="text-center">
                         <h2 className="text-3xl font-bold tracking-tight text-black  xl:text-5xl lg:text-3xl">Looking For?</h2>
@@ -66,7 +66,7 @@ function Offers(){
                         </div>
                     </div>
             </div>
-        </div>
+        </section>
     )
 }
 

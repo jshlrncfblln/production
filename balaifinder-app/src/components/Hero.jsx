@@ -1,21 +1,61 @@
-function Hero (){
-    return(
-        <div class="items-center w-10/12 grid-cols-2 bg-whitesmoke mx-auto overflow-x-hidden lg:grid md:py-14 lg:py-24 xl:py-14 lg:mt-3 xl:mt-5" data-aos="fade-right" data-aos-duration="800">
-            <div class="pr-2 md:mb-14 py-14 md:py-0">
-                <h1 class="text-3xl font-semibold text-sky-500 xl:text-5xl lg:text-3xl"><span class="block w-full">Discover Your Perfect Match</span> with Our Advanced Matching Algorithm</h1>
-                <p class="py-4 text-lg text-gray-500 2xl:py-8 md:py-6 2xl:pr-5">
-                Finding the right match can be challenging, whether you're looking for a partner, a job, or a place to live. Our platform simplifies this process by utilizing a sophisticated matching algorithm that takes into account your preferences, needs, and unique characteristics.
-                </p>
-                <div class="mt-4">
-                    <a href="#contact" class="px-5 py-3 text-lg tracking-wider text-white bg-sky-500 rounded-lg md:px-8 hover:bg-sky-700 group"><span>Explore More</span> </a>
-                </div>
-            </div>
+import React from 'react';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import { Link } from 'react-router-dom';
 
-            <div class="pb-10 overflow-hidden md:p-10 lg:p-0 sm:pb-0">
-                <img id="heroImg1" class="transition-all duration-300 ease-in-out hover:scale-105 lg:w-full sm:mx-auto sm:w-4/6 sm:pb-12 lg:pb-0" src="https://img.freepik.com/free-vector/landing-page-concept-house-searching_23-2148298747.jpg?t=st=1710318164~exp=1710321764~hmac=e0ad6579b177112e9ddd7cdb693341de38a4c104f11ed1ee32fc63745cde8d57&w=826" alt="searching house hero image" width="500" height="488"/>
-            </div>
+function Hero() {
+    const settings = {
+        dots: false,
+        infinite: true,
+        speed: 3000,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        arrows: window.innerWidth >= 768 ? true : false // Show arrows only if screen width is greater than or equal to 768px
+    };
+
+    // CSS styles for carousel images
+    const imageStyle = {
+        width: "736px",
+        height: "669px",
+        objectFit: "cover"
+    };
+
+  return (
+    <section className="bg-white">
+      <div className="container mx-auto py-16 px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-14">
+          <div className="max-w-xl">
+            <h1 className="text-3xl font-semibold text-sky-500 xl:text-5xl lg:text-3xl">
+              <span className="block w-full">Discover Your Perfect Match</span> with Our Advanced Matching Algorithm
+            </h1>
+            <p className="py-4 text-lg text-gray-500 2xl:py-8 md:py-6 2xl:pr-5">
+              Finding the right match can be challenging, whether you're looking for a partner, a job, or a place to live. Our platform simplifies this process by utilizing a sophisticated matching algorithm that takes into account your preferences, needs, and unique characteristics.
+            </p>
+            <Link to='/match_up' class="mt-4">
+                <button class="px-5 py-3 text-lg tracking-wider text-white bg-sky-500 rounded-lg md:px-8 hover:bg-sky-700 group"><span>Explore More</span> </button>
+            </Link>           
+          </div>
+          <div className="mt-12 md:mt-0">
+            <Slider {...settings}>
+              <div className='rounded-lg'>
+                <img src="/assets/house-image-1.jpg" alt="Slide 1" style={imageStyle} />
+              </div>
+              <div className='rounded-lg'>
+                <img src="/assets/condo-image-2.jpg" alt="Slide 2" style={imageStyle} />
+              </div>
+              <div className='rounded-lg'>
+                <img src="/assets/townhouse-image-3.jpg" alt="Slide 3" style={imageStyle} />
+              </div>
+              {/* Add more slides as needed */}
+            </Slider>
+          </div>
+        </div>
       </div>
-    )
+    </section>
+  );
 }
 
-export default Hero
+export default Hero;
