@@ -8,7 +8,7 @@ function Tester2(){
     const [data, setData] = useState([])
 
     const loadData = async () => {
-        const response = await axios.get("http://localhost:5000/api/get")
+        const response = await axios.get("https://balaifinder-backend-deploy.onrender.com/api/get")
         setData(response.data)
     }
 

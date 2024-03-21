@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { GrClose } from "react-icons/gr";
 import axios from "axios";
 
+
 function PreferenceSettings({ onClose, onSubmit }) {
   const [locationData, setLocationData] = useState([]);
   const [typeData, setTypeData] = useState([]);
@@ -19,9 +20,9 @@ function PreferenceSettings({ onClose, onSubmit }) {
 
   const loadData = async () => {
     const [locationResponse, typeResponse, priceResponse] = await Promise.all([
-      axios.get("http://localhost:8800/api/get/option/location"),
-      axios.get("http://localhost:8800/api/get/option/type"),
-      axios.get("http://localhost:8800/api/get/option/price"),
+      axios.get("https://balaifinder-backend-deploy.onrender.com/api/get/option/location"),
+      axios.get("https://balaifinder-backend-deploy.onrender.com/api/get/option/type"),
+      axios.get("https://balaifinder-backend-deploy.onrender.com/api/get/option/price"),
     ]);
 
     setLocationData(locationResponse.data);
