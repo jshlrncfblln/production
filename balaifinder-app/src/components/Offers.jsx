@@ -3,9 +3,8 @@
 
 function Offers(){
     return (
-        <section>
-            <div className="bg-white px-6 pt-16 pb-20 lg:px-8 lg:pt-24 lg:pb-28">
-                <div className="mx-auto max-w-7xl">
+        <div className="bg-pearl px-6 pt-16 pb-20 lg:px-8 lg:pt-24 lg:pb-28">
+            <div className="mx-auto max-w-7xl">
                     <div className="text-center">
                         <h2 className="text-3xl font-bold tracking-tight text-black  xl:text-5xl lg:text-3xl">Looking For?</h2>
                         <p className="mx-auto mt-3 max-w-2xl text-xl text-gray-500 sm:mt-4">Trouble in finding your ideal house? This site offers different categories of property that suites in your taste.</p>
@@ -66,9 +65,8 @@ function Offers(){
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
-        </section>
+        </div>
     )
 }
 

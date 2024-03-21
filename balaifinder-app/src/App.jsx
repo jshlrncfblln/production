@@ -40,33 +40,35 @@ function App() {
   const isRealtorRoute = location.pathname.startsWith('/realtor');
 
   return (
-    <div className="App">
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/properties" element={<Properties />} />
-        <Route path="/match_up" element={<MatchUp />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/realtor/*" element={<RealtorRoutes />} />
-        <Route path="/Tester2" element={<Tester2 />} />
-        
-      </Routes>
-      {!isRealtorRoute && (
-        <div className="fixed bottom-4 right-4">
-          <button
-            onClick={toggleContactModal}
-            className="flex items-center bg-sky-500 hover:bg-sky-700 text-white rounded-full py-4 px-5 shadow-lg"
-          >
-            <BiMessageDetail className="text-xl mr-2" />
-            Contact
-          </button>
-        </div>
-      )}
-      <Contact
-        isOpen={isOpenContactModal}
-        onClose={() => setIsOpenContactModal(false)}
-      />
-    </div>
+    <main>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/properties" element={<Properties />} />
+          <Route path="/match_up" element={<MatchUp />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/realtor/*" element={<RealtorRoutes />} />
+          <Route path="/Tester2" element={<Tester2 />} />
+          
+        </Routes>
+        {!isRealtorRoute && (
+          <div className="fixed bottom-4 right-4">
+            <button
+              onClick={toggleContactModal}
+              className="flex items-center bg-sky-500 hover:bg-sky-700 text-white rounded-full py-4 px-5 shadow-lg"
+            >
+              <BiMessageDetail className="text-xl mr-2" />
+              Contact
+            </button>
+          </div>
+        )}
+        <Contact
+          isOpen={isOpenContactModal}
+          onClose={() => setIsOpenContactModal(false)}
+        />
+      </div>
+    </main>
   );
 }
 

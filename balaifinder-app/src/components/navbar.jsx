@@ -118,7 +118,7 @@ function Navbar() {
     };
 
     return (
-        <div className="sticky top-0 z-50">
+        <nav className="sticky top-0 z-50">
             <div className="flex bg-white shadow items-center justify-between gap-8 p-3 w-full">
                 <div className='flex items-center'>
                     <img src="/assets/Balaifinder.png" alt="" height={50} width={50} />
@@ -167,7 +167,7 @@ function Navbar() {
                 </ul>
                 <LoginModal isOpen={isOpenLoginModal} onClose={() => setIsOpenLoginModal(false)} />
             </div>
-        </div>
+        </nav>
     );
 }
 

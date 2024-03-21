@@ -1,6 +1,6 @@
 function Footer(){
     return(
-        <section class="bg-gray-900 bottom-0 w-full">
+        <footer class="bg-gray-900  w-full">
             <div class="max-w-screen-xl px-4 py-12 mx-auto space-y-8 overflow-hidden sm:px-6 lg:px-8">
                 <nav class="flex flex-wrap justify-center -mx-5 -my-2">
                     <div class="px-5 py-2">
@@ -70,7 +70,7 @@ function Footer(){
                     © 2021 Syntax Finders. All rights reserved.
                 </p>
             </div>
-        </section>
+        </footer>
     )
 }
 
