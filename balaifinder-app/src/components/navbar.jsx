@@ -178,6 +178,7 @@ function Navbar() {
 
       // Redirect the user to the home page
       navigate("/");
+      toast.success('Logout successful!');
     } catch (error) {
       console.error("Error logging out:", error);
     }
