@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import regionsData from "../components/json/regions.json";
 import provincesData from "../components/json/provinces.json";
 import municipalitiesData from "../components/json/municipalities.json";
@@ -77,16 +79,16 @@ const Register = () => {
   };
 
   const handleChange = (e) => {
-    setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    const { name, value } = e.target;
+    setInputs((prevInputs) => ({
+      ...prevInputs,
+      [name]: value,
+    }));
 
-    const newErrors = {
-      ...errors,
+    setErrors((prevErrors) => ({
+      ...prevErrors,
       [name]: undefined, // this will remove the errors for the input fields
-    };
-
-    //setFormData(newFormData)
-    setErrors(newErrors);
-    console.log(errors);
+    }));
   };
 
   const navigate = useNavigate();
@@ -94,11 +96,18 @@ const Register = () => {
   const handleClick = async (e) => {
     e.preventDefault();
 
-    try {
-      await axios.post("https://balaifinder-backend-deploy.onrender.com/api/auth/register", inputs);
-      navigate("/");
-    } catch (err) {
-      setErr(err.response.data);
+    if (validateStep()) {
+      // Validate the current step
+      try {
+        await axios.post(
+          "https://balaifinder-backend-deploy.onrender.com/api/auth/register",
+          inputs
+        );
+        navigate("/");
+        toast.success('Registration successful! Welcome to BalaiFinder.');
+      } catch (err) {
+        setErr(err.response.data);
+      }
     }
   };
 
@@ -168,6 +177,7 @@ const Register = () => {
                 <input
                   type="text"
                   name="first_name"
+                  value={inputs.first_name}
                   onChange={handleChange}
                   className={`bg-gray-200 text-gray-700 focus:outline-sky-600 focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none ${
                     errors.first_name
@@ -190,6 +200,7 @@ const Register = () => {
                 <input
                   type="text"
                   name="last_name"
+                  value={inputs.last_name}
                   onChange={handleChange}
                   className={`bg-gray-200 text-gray-700 focus:outline-sky-600 focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none ${
                     errors.last_name
@@ -210,6 +221,7 @@ const Register = () => {
                 <input
                   type="date"
                   name="bday"
+                  value={inputs.bday}
                   onChange={handleChange}
                   className={`bg-gray-200 text-gray-700 focus:outline-sky-600 focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none`}
                 />
@@ -220,6 +232,7 @@ const Register = () => {
                 </label>
                 <select
                   name="gender"
+                  value={inputs.gender}
                   onChange={handleChange}
                   className={`bg-gray-200 text-gray-700 focus:outline-sky-600 focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none `}
                 >
@@ -243,6 +256,7 @@ const Register = () => {
                 <input
                   name="address"
                   type="text"
+                  value={inputs.address}
                   onChange={handleChange}
                   className={`bg-gray-200 text-gray-700 focus:outline-sky-600 focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none ${
                     errors.address
@@ -251,7 +265,7 @@ const Register = () => {
                       ? "border-green-500"
                       : ""
                   }`}
-                ></input>
+                />
                 {errors.address && (
                   <div className="text-red-600 text-xs">{errors.address}</div>
                 )}
@@ -262,6 +276,7 @@ const Register = () => {
                 </label>
                 <select
                   name="region"
+                  value={inputs.region}
                   onChange={handleChange}
                   className={`bg-gray-200 text-gray-700 focus:outline-sky-600 focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none ${
                     errors.region
@@ -288,6 +303,7 @@ const Register = () => {
                 </label>
                 <select
                   name="province"
+                  value={inputs.province}
                   onChange={handleChange}
                   className={`bg-gray-200 text-gray-700 focus:outline-sky-600 focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none ${
                     errors.province ? "border-red-500" : ""
@@ -300,6 +316,7 @@ const Register = () => {
                     </option>
                   ))}
                 </select>
+
                 {errors.province && (
                   <div className="text-red-600 text-xs">{errors.province}</div>
                 )}
@@ -310,6 +327,7 @@ const Register = () => {
                 </label>
                 <select
                   name="municipality"
+                  value={inputs.municipality}
                   onChange={handleChange}
                   className={`bg-gray-200 text-gray-700 focus:outline-sky-600 focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none ${
                     errors.province ? "border-red-500" : ""
@@ -346,6 +364,7 @@ const Register = () => {
                 <input
                   name="email"
                   type="email"
+                  value={inputs.email}
                   onChange={handleChange}
                   className={`bg-gray-200 text-gray-700 focus:outline-sky-600 focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none ${
                     errors.email ? "border-red-500" : ""
@@ -362,11 +381,13 @@ const Register = () => {
                 <input
                   name="password"
                   type="password"
+                  value={inputs.password}
                   onChange={handleChange}
                   className={`bg-gray-200 text-gray-700 focus:outline-sky-600 focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none ${
                     errors.password ? "border-red-500" : ""
                   }`}
                 />
+
                 {errors.password && (
                   <div className="text-red-600 text-xs">{errors.password}</div>
                 )}
@@ -378,6 +399,7 @@ const Register = () => {
                 <input
                   name="confirm_password"
                   type="password"
+                  value={inputs.confirm_password}
                   onChange={handleChange}
                   className={`bg-gray-200 text-gray-700 focus:outline-sky-600 focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none ${
                     errors.confirm_password ? "border-red-500" : ""
@@ -411,15 +433,16 @@ const Register = () => {
                 Previous
               </button>
             )}
-            <button
-              type="submit"
-              className="bg-sky-700 text-white font-bold py-2 px-5 rounded hover:bg-sky-500"
-            >
-              Next
-            </button>
+            {step < 3 && (
+              <button
+                type="submit"
+                className="bg-sky-700 text-white font-bold py-2 px-5 rounded hover:bg-sky-500"
+              >
+                Next
+              </button>
+            )}
           </div>
-          <div className="mt-5 flex items-center justify-between">
-          </div>
+          <div className="mt-5 flex items-center justify-between"></div>
         </form>
       </div>
     </div>
