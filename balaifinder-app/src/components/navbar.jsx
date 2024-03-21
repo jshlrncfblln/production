@@ -186,7 +186,7 @@ function CustomLink({ to, children, ...props }) {
                 className="relative transition-colors duration-300 hover:text-sky-500 group font-semibold"
             >
                 {children}
-                <span className="absolute inset-x-0 bottom-0 h-1 bg-sky-500 origin-left transform scale-x-0 transition-transform group-hover:scale-x-100 translate-y-2"></span>
+                <span className="absolute inset-x-0 bottom-0 h-1 bg-sky-500 origin-left transform scale-x-0 transition-transform transition duration-300 ease-in-out group-hover:scale-x-100 translate-y-2"></span>
             </Link>
         </li>
     );
