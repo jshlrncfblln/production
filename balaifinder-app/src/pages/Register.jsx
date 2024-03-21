@@ -95,7 +95,7 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:8800/api/auth/register", inputs);
+      await axios.post("https://balaifinder-backend-deploy.onrender.com/api/auth/register", inputs);
       navigate("/");
     } catch (err) {
       setErr(err.response.data);
