@@ -9,7 +9,7 @@ export const AuthContextProvider = ({ children }) => {
   );
 
   const login = async (inputs) => {
-    const res = await axios.post("http://localhost:8800/api/auth/login", inputs, {
+    const res = await axios.post("https://balaifinder-backend-deploy.onrender.com/api/auth/login", inputs, {
       withCredentials: true,
     });
 
@@ -18,7 +18,7 @@ export const AuthContextProvider = ({ children }) => {
 
   const logout = async () => {
     try {
-      await axios.post("http://localhost:8800/api/auth/logout", null, {
+      await axios.post("https://balaifinder-backend-deploy.onrender.com/api/auth/logout", null, {
         withCredentials: true,
       });
       setCurrentUser(null);
