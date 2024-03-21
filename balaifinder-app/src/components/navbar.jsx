@@ -118,53 +118,55 @@ function Navbar() {
     };
 
     return (
-        <div className="flex bg-white shadow items-center justify-between gap-8 p-3 w-full">
-            <div className='flex items-center'>
-                <img src="/assets/Balaifinder.png" alt="" height={50} width={50} />
-                <Link to="/" className="font-bold text-3xl">Balai<span className='text-sky-500'>Finder</span></Link>
-            </div>
-            <div className="md:hidden">
-                <button onClick={toggleMenu} className="text-gray-800 focus:outline-none">
-                    <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        {isOpen ? (
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                        ) : (
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                        )}
-                    </svg>
-                </button>
-                <div className={`fixed top-0 right-0 w-3/5 h-full bg-gray-700 z-50 transition-all duration-300 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-                    <button onClick={toggleMenu} className="absolute top-3 right-3 text-white outline outline-1 px-1 py-1 rounded focus:outline-sky-600">
+        <div className="sticky top-0 z-50">
+            <div className="flex bg-white shadow items-center justify-between gap-8 p-3 w-full">
+                <div className='flex items-center'>
+                    <img src="/assets/Balaifinder.png" alt="" height={50} width={50} />
+                    <Link to="/" className="font-bold text-3xl">Balai<span className='text-sky-500'>Finder</span></Link>
+                </div>
+                <div className="md:hidden">
+                    <button onClick={toggleMenu} className="text-gray-800 focus:outline-none">
                         <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                            {isOpen ? (
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                            ) : (
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                            )}
                         </svg>
                     </button>
-                    <ul className="flex flex-col items-center justify-center text-2xl h-full gap-10 text-white">
-                        <li><CustomLink to="/" className="p-2 underline-hover relative font-semibold">Home</CustomLink></li>
-                        <li><CustomLink to="/about" className="underline-hover relative p-2 font-semibold">About Us</CustomLink></li>
-                        <li><CustomLink to="/properties" className="underline-hover relative p-2 font-semibold">Properties</CustomLink></li>
-                        <li><CustomLink to="/match_up" className="underline-hover relative p-2 font-semibold">Match Up</CustomLink></li>
-                        <li><CustomLink to="/Tester2" className="underline-hover relative p-2 font-semibold">Match Up Result</CustomLink></li>
-                        {currentUser ? (
-                            <li><button onClick={handleLogout} className="rounded-lg bg-sky-500 px-8 py-1.5">Logout</button></li>
-                        ) : (
-                            <li><button onClick={toggleLoginModal} className="rounded-lg bg-sky-500 px-8 py-1.5">Login</button></li>
-                        )}
-                    </ul>
+                    <div className={`fixed top-0 right-0 w-3/5 h-full bg-gray-700 z-50 transition-all duration-300 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+                        <button onClick={toggleMenu} className="absolute top-3 right-3 text-white outline outline-1 px-1 py-1 rounded focus:outline-sky-600">
+                            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                        <ul className="flex flex-col items-center justify-center text-2xl h-full gap-10 text-white">
+                            <li><CustomLink to="/" className="p-2 underline-hover relative font-semibold">Home</CustomLink></li>
+                            <li><CustomLink to="/about" className="underline-hover relative p-2 font-semibold">About Us</CustomLink></li>
+                            <li><CustomLink to="/properties" className="underline-hover relative p-2 font-semibold">Properties</CustomLink></li>
+                            <li><CustomLink to="/match_up" className="underline-hover relative p-2 font-semibold">Match Up</CustomLink></li>
+                            <li><CustomLink to="/Tester2" className="underline-hover relative p-2 font-semibold">Match Up Result</CustomLink></li>
+                            {currentUser ? (
+                                <li><button onClick={handleLogout} className="rounded-lg bg-sky-500 px-8 py-1.5">Logout</button></li>
+                            ) : (
+                                <li><button onClick={toggleLoginModal} className="rounded-lg bg-sky-500 px-8 py-1.5">Login</button></li>
+                            )}
+                        </ul>
+                    </div>
                 </div>
+                <ul className="hidden md:flex gap-4 p-2 items-center">
+                    <li><CustomLink to="/" className="p-2 underline-hover relative font-semibold">Home</CustomLink></li>
+                    <li><CustomLink to="/about" className="underline-hover relative p-2 font-semibold">About Us</CustomLink></li>
+                    <li><CustomLink to="/properties" className="underline-hover relative p-2 font-semibold">Properties</CustomLink></li>
+                    <li><CustomLink to="/match_up" className="underline-hover relative p-2 font-semibold">Match Up</CustomLink></li>
+                    {currentUser ? (
+                        <li><button onClick={handleLogout} className="hover:bg-sky-700 bg-sky-500 px-6 py-1.5 rounded-lg text-white">Logout</button></li>
+                    ) : (
+                        <li><button onClick={toggleLoginModal} className="hover:bg-sky-700 bg-sky-500 px-6 py-1.5 rounded-lg text-white">Login</button></li>
+                    )}
+                </ul>
+                <LoginModal isOpen={isOpenLoginModal} onClose={() => setIsOpenLoginModal(false)} />
             </div>
-            <ul className="hidden md:flex gap-4 p-2 items-center">
-                <li><CustomLink to="/" className="p-2 underline-hover relative font-semibold">Home</CustomLink></li>
-                <li><CustomLink to="/about" className="underline-hover relative p-2 font-semibold">About Us</CustomLink></li>
-                <li><CustomLink to="/properties" className="underline-hover relative p-2 font-semibold">Properties</CustomLink></li>
-                <li><CustomLink to="/match_up" className="underline-hover relative p-2 font-semibold">Match Up</CustomLink></li>
-                {currentUser ? (
-                    <li><button onClick={handleLogout} className="hover:bg-sky-700 bg-sky-500 px-6 py-1.5 rounded-lg text-white">Logout</button></li>
-                ) : (
-                    <li><button onClick={toggleLoginModal} className="hover:bg-sky-700 bg-sky-500 px-6 py-1.5 rounded-lg text-white">Login</button></li>
-                )}
-            </ul>
-            <LoginModal isOpen={isOpenLoginModal} onClose={() => setIsOpenLoginModal(false)} />
         </div>
     );
 }
