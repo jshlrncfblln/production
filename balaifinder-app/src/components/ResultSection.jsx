@@ -23,6 +23,7 @@ export function ResultSection() {
                 <span className="text-gray-400 mr-3 uppercase text-xs">{item.type}</span>
                 <p className="text-lg font-bold text-black truncate block capitalize">{item.name}</p>
                 <p className="text-lg font-bold text-black truncate block capitalize">{item.location}</p>
+                <p className="text-lg font-bold text-black truncate block capitalize">{item.score}</p>
                 <div className="flex items-center">
                   <p className="text-lg font-semibold text-black cursor-auto my-3">₱{new Intl.NumberFormat().format(item.price)}</p>
                   <div className="ml-auto">
