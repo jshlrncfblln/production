@@ -119,7 +119,7 @@ function PreferenceSettings({ onClose, onSubmit }) {
         </div>
         <div className="flex flex-col mb-4">
             <label className="text-center uppercase">Near a Mall?</label>
-            <select name="near_mall" alue={formData.near_mall} onChange={handleChange} className="border-sky-500 border-[3px] rounded-full">
+            <select name="near_mall" value={formData.near_mall} onChange={handleChange} className="border-sky-500 border-[3px] rounded-full">
                 <option disabled hidden value="">Select</option>
                 {nearMallData.map((item, index) => (
                 <option key={index} value={item.isnearmall}>{item.isnearmall}</option>
