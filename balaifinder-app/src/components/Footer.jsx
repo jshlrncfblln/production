@@ -1,4 +1,16 @@
+import Terms from "./Terms"
+import { useState } from "react";
 function Footer(){
+    const [showTermsModal, setShowTermsModal] = useState(false);
+
+    const openTerms = (event) => {
+      setShowTermsModal(true);
+      event.preventDefault()
+    };
+  
+    const closeTerms = () => {
+      setShowTermsModal(false);
+    };
     return(
         <footer class="bg-gray-900  w-full">
             <div class="max-w-screen-xl px-4 py-12 mx-auto space-y-8 overflow-hidden sm:px-6 lg:px-8">
@@ -29,7 +41,7 @@ function Footer(){
                         </a>
                     </div>
                     <div class="px-5 py-2">
-                        <a href="#" class="text-base leading-6 text-gray-100 hover:text-sky-600">
+                        <a onClick={openTerms} class="text-base leading-6 text-gray-100 hover:text-sky-600 cursor-pointer">
                             Terms
                         </a>
                     </div>
@@ -69,6 +81,7 @@ function Footer(){
                 <p class="mt-8 text-base leading-6 text-center text-gray-400">
                     © 2021 Syntax Finders. All rights reserved.
                 </p>
+                {showTermsModal && <Terms closeModal={closeTerms} />}
             </div>
         </footer>
     )
