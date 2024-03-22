@@ -139,7 +139,6 @@ function PreferenceSettings({ onClose, onSubmit }) {
             <label className="text-center uppercase">Near a Church?</label>
             <select name="near_church" value={formData.near_church} onChange={handleChange} className="border-sky-500 border-[3px] rounded-full">
                 <option disabled hidden value="">Select</option>
-                <option disabled hidden value="">Select</option>
                 {nearChurchData.map((item, index) => (
                 <option key={index} value={item.isnearchurch}>{item.isnearchurch}</option>
                 ))}
