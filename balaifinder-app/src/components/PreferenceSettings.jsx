@@ -93,7 +93,7 @@ function PreferenceSettings({ onClose, onSubmit }) {
               <GrClose />
             </button>
           </div>
-          <form onSubmit={handleSubmit} className="px-16 py-8 space-y-8 bg-white" method="POST" action={`${ backendurl }/api/post/submitpreferences`}>
+          <form onSubmit={handleSubmit} className="px-16 py-8 space-y-8 bg-white">
             <div className="text-center mb-4">
               <h1 className="text-3xl font-semibold">Setup your Preferences</h1>
               <p className="text-gray-600 text-base">Let us know what property you want.</p>
@@ -201,25 +201,26 @@ function PreferenceSettings({ onClose, onSubmit }) {
         </div>
       </div>
 
-            {showResultsModal && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-50">
-                    <div className="bg-white p-6 rounded-md shadow-md relative">
-                        <button
-                            onClick={handleCloseResultsModal}
-                            className="px-2 py-2 shadow-md border absolute top-2 right-2"
-                        >
-                            <GrClose />
-                        </button>
-                        <h1 className="text-3xl font-semibold">Results</h1>
-                        {/* Display results here */}
-                        <ul>
-                            {resultsData.map((result, index) => (
-                                <li key={index}>{result}</li>
-                            ))}
-                        </ul>
-                    </div>
-                </div>
+      {showResultsModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-50">
+          <div className="bg-white p-6 rounded-md shadow-md relative">
+            <button onClick={handleCloseResultsModal} className="px-2 py-2 shadow-md border absolute top-2 right-2">
+              <GrClose />
+            </button>
+            <h1 className="text-3xl font-semibold">Results</h1>
+            {/* Check if resultsData is an array before mapping */}
+            {Array.isArray(resultsData) ? (
+              <ul>
+                {resultsData.map((result, index) => (
+                  <li key={index}>{result}</li>
+                ))}
+              </ul>
+            ) : (
+              <p>Preferences Set Success</p>
             )}
+        </div>
+        </div>
+      )}
         </>
     );
 }
