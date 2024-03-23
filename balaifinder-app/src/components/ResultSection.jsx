@@ -46,7 +46,14 @@ export function ResultSection() {
                 <div className="px-4 py-3 w-72">
                   <span className="text-gray-400 mr-3 uppercase text-xs">{item.type}</span>
                   <p className="text-lg font-bold text-black truncate block capitalize">{item.name}</p>
-                  <p className="text-lg font-bold text-black truncate block capitalize">{`${item.score_percentage}%`}</p>
+                  <p className="text-lg font-bold text-black truncate block capitalize">near_school? = {item.isnearschool}</p>
+                  <p className="text-lg font-bold text-black truncate block capitalize">near_church? = {item.isnearchurch}</p>
+                  <p className="text-lg font-bold text-black truncate block capitalize">near_mall? = {item.isnearmall}</p>
+                  <p className="text-lg font-bold text-black truncate block capitalize">numberofbedroom = {item.numberofbedroom}</p>
+                  <p className="text-lg font-bold text-black truncate block capitalize">numberofbathroom = {item.numberofbathroom}</p>
+                  <p className="text-lg font-bold text-black truncate block capitalize">Lot Type = {item.typeoflot}</p>
+                  <p className="text-lg font-bold text-black truncate block capitalize">familysize = {item.familysize}</p>
+                  <p className="text-lg font-bold text-black truncate block capitalize">Match Percentage ={(item.score * 100).toFixed(0)}%</p>
 
                   <div className="flex items-center">
                     <p className="text-lg font-semibold text-black cursor-auto my-3">₱{new Intl.NumberFormat().format(item.price)}</p>
