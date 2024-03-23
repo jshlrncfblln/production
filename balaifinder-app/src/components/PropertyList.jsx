@@ -8,7 +8,7 @@ export default function PropLists(){
     const [data, setData] = useState([])
 
     const loadData = async () => {
-        const response = await axios.get("https://balaifinder-backend-deploy.onrender.com/api/get/properties")
+        const response = await axios.get(`${backendurl}/api/get/properties`)
         setData(response.data)
     }
 

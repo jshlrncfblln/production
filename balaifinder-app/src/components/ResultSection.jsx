@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { backendurl } from "../../backend-connector";
 
 export function ResultSection() {
   const [data, setData] = useState([]);
@@ -9,7 +10,7 @@ export function ResultSection() {
 
   const loadData = async () => {
     try {
-      const response = await axios.get('https://balaifinder-backend-deploy.onrender.com/api/get');
+      const response = await axios.get(`${backendurl}/api/get`);
       setData(response.data);
       setLoading(false);
       if (response.data.length === 0) {
@@ -22,7 +23,11 @@ export function ResultSection() {
   };
 
   useEffect(() => {
-    loadData();
+    loadData(); // Load data initially
+    const intervalId = setInterval(loadData, 5000); // Refresh data every 5 seconds (adjust interval as needed)
+    
+    // Clear interval on component unmount
+    return () => clearInterval(intervalId);
   }, []);
 
   if (loading) {
