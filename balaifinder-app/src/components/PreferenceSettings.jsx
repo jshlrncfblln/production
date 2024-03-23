@@ -101,7 +101,7 @@ function PreferenceSettings({ onClose, onSubmit }) {
                     >
                         <div className="text-center mb-4">
                             <h1 className="text-3xl font-semibold">
-                                Setup your Preferences
+                                WAG GALAWIN WAG GLAWAIN MAY GINAGAWA AKO DITO WAG MAG SUBMIT
                             </h1>
                             <p className="text-gray-600 text-base">
                                 Let us know what property you want.
