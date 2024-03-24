@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import LoginModal from "./LoginModal"; // Import the LoginModal component
 import { Transition } from '@headlessui/react';
+import { FaUser } from "react-icons/fa";
 
 
 
@@ -180,22 +181,8 @@ function Navbar() {
                 <li>
                   <button
                     onClick={togglePopMenu}
-                    className="text-gray-300 hover:text-white focus:outline-none focus:text-white"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-6 w-6"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M4 6h16M4 12h16m-7 6h7"
-                      />
-                    </svg>
+                    className="rounded-md px-2 py-2 hover:shadow-md">
+                      <FaUser />
                   </button>
                   <Transition
                       show={isOpenPopMenu}
@@ -209,20 +196,12 @@ function Navbar() {
                     <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                         {/* Menu items */}
-                        <a
-                          href="#"
+                        <Link to="/user-profile-settings"
                           className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                           role="menuitem"
                         >
-                          Profile
-                        </a>
-                        <a
-                          href="#"
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                          role="menuitem"
-                        >
-                          Settings
-                        </a>
+                          Profile Settings
+                        </Link>
                         <a
                           onClick={handleLogout}
                           className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
@@ -299,20 +278,12 @@ function Navbar() {
                     <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                         {/* Menu items */}
-                        <a
-                          href="#"
+                        <Link to="/user-profile-settings"
                           className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                           role="menuitem"
                         >
                           Profile
-                        </a>
-                        <a
-                          href="#"
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                          role="menuitem"
-                        >
-                          Settings
-                        </a>
+                        </Link>
                         <a
                           onClick={handleLogout}
                           className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
