@@ -73,6 +73,12 @@ function Navbar() {
     }
   };
 
+  const handleProfileSettings = () => {
+    // Handle profile settings logic here
+    navigate("/user-profile-settings");
+    console.log("Navigate to profile settings");
+  };
+
   return (
     <nav className="sticky top-0 z-50">
       <div className="flex bg-white shadow items-center justify-between gap-8 p-3 w-full">
