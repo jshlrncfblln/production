@@ -4,6 +4,7 @@ import { AuthContext } from "../context/authContext";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import LoginModal from "./LoginModal"; // Import the LoginModal component
+import { FaUser } from "react-icons/fa";
 
 
 function Navbar() {
@@ -11,6 +12,13 @@ function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenLoginModal, setIsOpenLoginModal] = useState(false);
   const navigate = useNavigate();
+    // State to track whether the menu is open or closed
+  const [isOpenPopMenu, setIsOpenPopMenu] = useState(false);
+
+    // Function to toggle the menu open and closed
+  const togglePopMenu = () => {
+    setIsOpenPopMenu(!isOpenPopMenu);
+  };
 
   const [scrollPosition, setScrollPosition] = useState(0);
 
@@ -54,7 +62,6 @@ function Navbar() {
     setIsOpen(false);
   };
 
-
   const handleLogout = async () => {
     try {
       // Call the logout function from the context
@@ -72,12 +79,6 @@ function Navbar() {
       e.preventDefault();
       setIsOpenLoginModal(!isOpenLoginModal);
     }
-  };
-
-  const handleProfileSettings = () => {
-    // Handle profile settings logic here
-    navigate("/user-profile-settings");
-    console.log("Navigate to profile settings");
   };
 
   return (
@@ -176,11 +177,60 @@ function Navbar() {
               {currentUser ? (
                 <li>
                   <button
-                    onClick={handleLogout}
-                    className="rounded-lg bg-sky-500 px-8 py-1.5"
+                    onClick={togglePopMenu}
+                    className="text-gray-300 hover:text-white focus:outline-none focus:text-white"
                   >
-                    Logout
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M4 6h16M4 12h16m-7 6h7"
+                      />
+                    </svg>
                   </button>
+                  <Transition
+                      show={isOpenPopMenu}
+                      enter="transition-opacity duration-75"
+                      enterFrom="opacity-0"
+                      enterTo="opacity-100"
+                      leave="transition-opacity duration-150"
+                      leaveFrom="opacity-100"
+                      leaveTo="opacity-0"
+                    >
+                    <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                      <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                        {/* Menu items */}
+                        <a
+                          href="#"
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                          role="menuitem"
+                        >
+                          Profile
+                        </a>
+                        <a
+                          href="#"
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                          role="menuitem"
+                        >
+                          Settings
+                        </a>
+                        <a
+                          onClick={handleLogout}
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+                          role="menuitem"
+                        >
+                          Logout
+                        </a>
+                      </div>
+                    </div>
+                  </Transition>
                 </li>
               ) : (
                 <li>
@@ -229,34 +279,11 @@ function Navbar() {
             </CustomLink>
           </li>
           {currentUser ? (
-            <li className="relative">
-              <button onClick={toggleMenu} className="flex items-center gap-2 hover:bg-sky-700 bg-sky-500 px-6 py-1.5 rounded-lg text-white">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 2c-2.71 0-5 2.239-5 5v1c0 3.16 1.49 4.749 3.65 5.875 1.36.808 3.29 1.624 5.35 2.126 2.06-.452 3.99-1.318 5.35-2.126C13.51 12.748 15 11.16 15 8V7c0-2.761-2.29-5-5-5zM8 9c-2.756 0-5 2.244-5 5v1c0 2.761 2.244 5 5 5s5-2.239 5-5v-1c0-2.756-2.244-5-5-5zm2 1c1.104 0 2 .897 2 2s-.896 2-2 2-2-.897-2-2 .896-2 2-2z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span>Profile</span>
+            <li>
+
+              <button onClick={handleLogout} className="hover:bg-sky-700 bg-sky-500 px-6 py-1.5 rounded-lg text-white">
+                Logout
               </button>
-              <ul className="absolute top-full right-0 mt-2 w-36 bg-white rounded-lg shadow-lg z-10 hidden">
-                <li>
-                  <button onClick={handleProfileSettings} className="w-full px-4 py-2 text-gray-800 hover:bg-gray-200">
-                    Profile Settings
-                  </button>
-                </li>
-                <li>
-                  <button onClick={handleLogout} className="w-full px-4 py-2 text-gray-800 hover:bg-gray-200">
-                    Logout
-                  </button>
-                </li>
-              </ul>
             </li>
           ) : (
             <li>
@@ -268,7 +295,6 @@ function Navbar() {
               </button>
             </li>
           )}
-
         </ul>
         <LoginModal
           isOpen={isOpenLoginModal}
