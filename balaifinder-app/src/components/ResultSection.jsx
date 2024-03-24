@@ -31,7 +31,7 @@ function ResultSection() {
 
   useEffect(() => {
     if (data.length === 0 && firstRender) {
-      toast.info("No matches found");
+      toast.info("Algorithm Busy");
       setFirstRender(false);
     }
   }, [data, firstRender]);
