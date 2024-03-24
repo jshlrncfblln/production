@@ -8,17 +8,15 @@ import { backendurl } from "../../backend-connector";
 function ResultSection() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [firstRender, setFirstRender] = useState(true); // FIX TOASTIFY OVER POPULATING THE SCREEN WITH NO RESULT
 
   const loadData = async () => {
     try {
       const response = await axios.get(`${backendurl}/api/get`);
       setData(response.data);
       setLoading(false);
-      if (response.data.length === 0) {
-        toast.info('No matches found');
-      }
     } catch (error) {
-      console.error('Error loading data:', error);
+      console.error("Error loading data:", error);
       setLoading(false);
     }
   };
@@ -26,10 +24,17 @@ function ResultSection() {
   useEffect(() => {
     loadData(); // Load data initially
     const intervalId = setInterval(loadData, 5000); // Refresh data every 5 seconds (adjust interval as needed)
-    
+
     // Clear interval on component unmount
     return () => clearInterval(intervalId);
   }, []);
+
+  useEffect(() => {
+    if (data.length === 0 && firstRender) {
+      toast.info("No matches found");
+      setFirstRender(false);
+    }
+  }, [data, firstRender]);
 
   return (
     <>
