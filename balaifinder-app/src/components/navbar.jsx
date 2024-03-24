@@ -4,7 +4,9 @@ import { AuthContext } from "../context/authContext";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import LoginModal from "./LoginModal"; // Import the LoginModal component
-import { FaUser } from "react-icons/fa";
+import { Transition } from '@headlessui/react';
+
+
 
 
 function Navbar() {
