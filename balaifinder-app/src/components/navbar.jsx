@@ -54,6 +54,7 @@ function Navbar() {
     setIsOpen(false);
   };
 
+
   const handleLogout = async () => {
     try {
       // Call the logout function from the context
@@ -229,7 +230,7 @@ function Navbar() {
           </li>
           {currentUser ? (
             <li className="relative">
-              <button className="flex items-center gap-2 hover:bg-sky-700 bg-sky-500 px-6 py-1.5 rounded-lg text-white">
+              <button onClick={toggleMenu} className="flex items-center gap-2 hover:bg-sky-700 bg-sky-500 px-6 py-1.5 rounded-lg text-white">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-5 w-5"
@@ -244,20 +245,14 @@ function Navbar() {
                 </svg>
                 <span>Profile</span>
               </button>
-              <ul className="absolute right-0 mt-2 w-36 bg-white rounded-lg shadow-lg z-10 hidden">
+              <ul className="absolute top-full right-0 mt-2 w-36 bg-white rounded-lg shadow-lg z-10 hidden">
                 <li>
-                  <button
-                    onClick={handleProfileSettings}
-                    className="w-full px-4 py-2 text-gray-800 hover:bg-gray-200"
-                  >
+                  <button onClick={handleProfileSettings} className="w-full px-4 py-2 text-gray-800 hover:bg-gray-200">
                     Profile Settings
                   </button>
                 </li>
                 <li>
-                  <button
-                    onClick={handleLogout}
-                    className="w-full px-4 py-2 text-gray-800 hover:bg-gray-200"
-                  >
+                  <button onClick={handleLogout} className="w-full px-4 py-2 text-gray-800 hover:bg-gray-200">
                     Logout
                   </button>
                 </li>
