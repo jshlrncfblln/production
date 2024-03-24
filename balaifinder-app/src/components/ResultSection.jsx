@@ -10,8 +10,17 @@ function ResultSection() {
   const [loading, setLoading] = useState(true);
 
   const loadData = async () => {
-    const response = await axios.get(`${ backendurl }/api/get`);
-    setData(response.data);
+    try {
+      const response = await axios.get(`${backendurl}/api/get`);
+      setData(response.data);
+      setLoading(false);
+      if (response.data.length === 0) {
+        toast.info('No matches found');
+      }
+    } catch (error) {
+      console.error('Error loading data:', error);
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -21,10 +30,6 @@ function ResultSection() {
     // Clear interval on component unmount
     return () => clearInterval(intervalId);
   }, []);
-
-  if (loading) {
-    return <p>Loading...</p>;
-  }
 
   return (
     <>
