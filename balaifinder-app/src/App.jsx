@@ -16,6 +16,7 @@ import { useContext } from 'react'
 import { AuthContext } from './context/authContext'
 import Register from './pages/Register'
 import MatchUp from './pages/MatchUp'
+import ProductDetails from './components/ProductDetails'
 
 function App() {
   const {currentUser} = useContext(AuthContext);
@@ -47,7 +48,9 @@ function App() {
           <Route path="/properties" element={<Properties />} />
           <Route path="/match_up" element={<MatchUp />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/productdetails" element={<ProductDetails />} />
           <Route path="/realtor/*" element={<RealtorRoutes />} />
+
           
         </Routes>
         {!isRealtorRoute && (

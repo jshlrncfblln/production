@@ -1,4 +1,4 @@
-export default function Product() {
+export default function ProductDetails() {
     return (
         <div class="bg-gray-100 dark:bg-gray-800 py-8">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
