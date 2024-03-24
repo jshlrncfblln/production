@@ -2,24 +2,16 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Link } from 'react-router-dom';
 import { backendurl } from "../../backend-connector";
 
-export function ResultSection() {
+function ResultSection() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const loadData = async () => {
-    try {
-      const response = await axios.get(`${backendurl}/api/get`);
-      setData(response.data);
-      setLoading(false);
-      if (response.data.length === 0) {
-        toast.info('No matches found');
-      }
-    } catch (error) {
-      console.error('Error loading data:', error);
-      setLoading(false);
-    }
+    const response = await axios.get(`${ backendurl }/api/get`);
+    setData(response.data);
   };
 
   useEffect(() => {
@@ -40,19 +32,13 @@ export function ResultSection() {
       {data.length > 0 ? (
         <section className="w-fit mx-auto grid grid-cols lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-10">
           {data.map((item, index) => (
-            <div key={index} className="w-72 bg-white shadow-md rounded-xl hover:shadow-sky-600 duration-500 hover:scale-105 hover:shadow-xl">
-              <a href="/property-details">
+            <div key={item.id} className="w-72 bg-white shadow-md rounded-xl hover:shadow-sky-600 duration-500 hover:scale-105 hover:shadow-xl">
+              <Link to={`/details/${item.id}`}>
                 <img src="https://img.freepik.com/free-photo/house-isolated-field_1303-23773.jpg?t=st=1710318322~exp=1710321922~hmac=1797b6b00add732c13f15b3160cb99f3c7e6fe2e9fb745a53d801c74a968fe8b&w=1380" alt="Product" className="h-80 w-72 object-cover rounded-t-xl" />
                 <div className="px-4 py-3 w-72">
                   <span className="text-gray-400 mr-3 uppercase text-xs">{item.type}</span>
                   <p className="text-lg font-bold text-black truncate block capitalize">{item.name}</p>
-                  <p className="text-lg font-bold text-black truncate block capitalize">near_school? = {item.isnearschool}</p>
-                  <p className="text-lg font-bold text-black truncate block capitalize">near_church? = {item.isnearchurch}</p>
-                  <p className="text-lg font-bold text-black truncate block capitalize">near_mall? = {item.isnearmall}</p>
-                  <p className="text-lg font-bold text-black truncate block capitalize">numberofbedroom = {item.numberofbedroom}</p>
-                  <p className="text-lg font-bold text-black truncate block capitalize">numberofbathroom = {item.numberofbathroom}</p>
-                  <p className="text-lg font-bold text-black truncate block capitalize">Lot Type = {item.typeoflot}</p>
-                  <p className="text-lg font-bold text-black truncate block capitalize">familysize = {item.familysize}</p>
+                  <p className="text-lg font-bold text-black truncate block capitalize">{item.location}</p>
                   <p className="text-lg font-bold text-black truncate block capitalize">Match Percentage ={(item.score * 100).toFixed(0)}%</p>
 
                   <div className="flex items-center">
@@ -65,7 +51,7 @@ export function ResultSection() {
                     </div>
                   </div>
                 </div>
-              </a>
+              </Link>
             </div>
           ))}
         </section>

@@ -16,7 +16,9 @@ import { useContext } from 'react'
 import { AuthContext } from './context/authContext'
 import Register from './pages/Register'
 import MatchUp from './pages/MatchUp'
-import ProductDetails from './components/ProductDetails'
+import PropertyDetails from './pages/PropertyDetails'
+import ResultSection from './components/ResultSection'
+
 
 function App() {
   const {currentUser} = useContext(AuthContext);
@@ -48,10 +50,9 @@ function App() {
           <Route path="/properties" element={<Properties />} />
           <Route path="/match_up" element={<MatchUp />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/productdetails" element={<ProductDetails />} />
           <Route path="/realtor/*" element={<RealtorRoutes />} />
-
-          
+          <Route path="/details/:id" element={<PropertyDetails />} />
+          <Route path="/" element={<ResultSection />} />
         </Routes>
         {!isRealtorRoute && (
           <div className="fixed bottom-4 right-4">
