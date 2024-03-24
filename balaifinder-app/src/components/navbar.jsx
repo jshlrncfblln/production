@@ -281,22 +281,73 @@ function Navbar() {
             </CustomLink>
           </li>
           {currentUser ? (
-            <li>
-
-              <button onClick={handleLogout} className="hover:bg-sky-700 bg-sky-500 px-6 py-1.5 rounded-lg text-white">
-                Logout
-              </button>
-            </li>
+                <li>
+                  <button
+                    onClick={togglePopMenu}
+                    className="text-gray-300 hover:text-white focus:outline-none focus:text-white"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M4 6h16M4 12h16m-7 6h7"
+                      />
+                    </svg>
+                  </button>
+                  <Transition
+                      show={isOpenPopMenu}
+                      enter="transition-opacity duration-75"
+                      enterFrom="opacity-0"
+                      enterTo="opacity-100"
+                      leave="transition-opacity duration-150"
+                      leaveFrom="opacity-100"
+                      leaveTo="opacity-0"
+                    >
+                    <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                      <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                        {/* Menu items */}
+                        <a
+                          href="#"
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                          role="menuitem"
+                        >
+                          Profile
+                        </a>
+                        <a
+                          href="#"
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                          role="menuitem"
+                        >
+                          Settings
+                        </a>
+                        <a
+                          onClick={handleLogout}
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+                          role="menuitem"
+                        >
+                          Logout
+                        </a>
+                      </div>
+                    </div>
+                  </Transition>
+                </li>
           ) : (
-            <li>
-              <button
-                onClick={toggleLoginModal}
-                className="hover:bg-sky-700 bg-sky-500 px-6 py-1.5 rounded-lg text-white"
-              >
-                Login
-              </button>
-            </li>
-          )}
+                <li>
+                  <button
+                    onClick={toggleLoginModal}
+                    className="rounded-lg bg-sky-500 px-8 py-1.5 hover:bg-sky-700"
+                  >
+                    Login
+                  </button>
+                </li>
+              )}
         </ul>
         <LoginModal
           isOpen={isOpenLoginModal}
