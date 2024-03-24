@@ -8,7 +8,7 @@ import Manage from './realtor/Manage-Property'
 import Inbox from './realtor/Inbox'
 import Settings from './realtor/Settings'
 import { BiMessageDetail } from "react-icons/bi"
-import { useState } from 'react'
+import { Profiler, useState } from 'react'
 import Contact from './components/Contact'
 import Layout from './components/DashboardSidebar'
 import ManageProperty from './realtor/Manage-Property'
@@ -16,7 +16,7 @@ import { useContext } from 'react'
 import { AuthContext } from './context/authContext'
 import Register from './pages/Register'
 import MatchUp from './pages/MatchUp'
-
+import Profile from "./pages/ProfileSettings"
 function App() {
   const {currentUser} = useContext(AuthContext);
 
@@ -45,9 +45,10 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/properties" element={<Properties />} />
-          <Route path="/match_up" element={<MatchUp />} />
+          <Route path="/matching" element={<MatchUp />} />
           <Route path="/register" element={<Register />} />
           <Route path="/realtor/*" element={<RealtorRoutes />} />
+          <Route path="/user-profile-settings" element={<Profile />} />
           
         </Routes>
         {!isRealtorRoute && (

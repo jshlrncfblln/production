@@ -1,7 +1,16 @@
 import Terms from "./Terms"
 import { useState } from "react";
-function Footer(){
+import { Link } from "react-router-dom";
+import LoginModal from "./LoginModal";
+function Footer({openLoginModal}){
     const [showTermsModal, setShowTermsModal] = useState(false);
+
+    const [isOpenLoginModal, setIsOpenLoginModal] = useState(false);
+
+    const toggleLoginModal = () => {
+      setIsOpenLoginModal(!isOpenLoginModal);
+    };
+  
 
     const openTerms = (event) => {
       setShowTermsModal(true);
@@ -16,27 +25,27 @@ function Footer(){
             <div class="max-w-screen-xl px-4 py-12 mx-auto space-y-8 overflow-hidden sm:px-6 lg:px-8">
                 <nav class="flex flex-wrap justify-center -mx-5 -my-2">
                     <div class="px-5 py-2">
-                        <a href="#" class="text-base leading-6 text-gray-100 hover:text-sky-600">
+                        <Link to="/" className="text-base leading-6 text-gray-100 hover:text-sky-500">
                             Home
-                        </a>
+                        </Link>
                     </div>
                     <div class="px-5 py-2">
-                        <a href="#" class="text-base leading-6 text-gray-100 hover:text-sky-600">
+                        <Link to="/about" class="text-base leading-6 text-gray-100 hover:text-sky-600" >
                             About
-                        </a>
+                        </Link>
                     </div>
                     <div class="px-5 py-2">
-                        <a href="#" class="text-base leading-6 text-gray-100 hover:text-sky-600">
+                        <Link to="/properties" class="text-base leading-6 text-gray-100 hover:text-sky-600">
                             Properties
-                        </a>
+                        </Link>
                     </div>
                     <div class="px-5 py-2">
-                        <a href="#" class="text-base leading-6 text-gray-100 hover:text-sky-600">
+                        <Link to="matching" class="text-base leading-6 text-gray-100 hover:text-sky-600">
                             Match
-                        </a>
+                        </Link>
                     </div>
                     <div class="px-5 py-2">
-                        <a href="#" class="text-base leading-6 text-gray-100 hover:text-sky-600">
+                        <a onClick={toggleLoginModal} class="text-base leading-6 text-gray-100 hover:text-sky-600 cursor-pointer">
                             Login
                         </a>
                     </div>
@@ -81,7 +90,8 @@ function Footer(){
                 <p class="mt-8 text-base leading-6 text-center text-gray-400">
                     © 2021 Syntax Finders. All rights reserved.
                 </p>
-                {showTermsModal && <Terms closeModal={closeTerms} />}
+                {showTermsModal && <Terms closeModal={closeTerms} className='mb-4'/>}
+                <LoginModal isOpen={isOpenLoginModal} onClose={toggleLoginModal} />
             </div>
         </footer>
     )

@@ -1,11 +1,22 @@
-// Contact.js
-import React from 'react';
+import React, { useEffect } from 'react';
 
 export default function Contact({ isOpen, onClose }) {
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'; // Disable scrolling
+    } else {
+      document.body.style.overflow = ''; // Enable scrolling
+    }
+
+    return () => {
+      document.body.style.overflow = ''; // Enable scrolling when component unmounts
+    };
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 flex justify-center items-center bg-gray-800 bg-opacity-50">
+    <div className="fixed inset-0 z-50 flex justify-center items-center bg-gray-800 bg-opacity-50">
       <div className="max-w-xl mx-auto flex flex-col border rounded-lg bg-white p-8 relative">
         <div className="absolute top-0 right-0 m-4 cursor-pointer" onClick={onClose}>
             <svg className="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
