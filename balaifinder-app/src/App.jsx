@@ -4,14 +4,12 @@ import Home from './pages/Home'
 import Properties from './pages/Properties'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import Dashboard from './realtor/Dashboard'
-import Manage from './realtor/Manage-Property'
 import Inbox from './realtor/Inbox'
 import Settings from './realtor/Settings'
 import { BiMessageDetail } from "react-icons/bi"
 import { Profiler, useState } from 'react'
 import Contact from './components/Contact'
-import Layout from './components/DashboardSidebar'
-import ManageProperty from './realtor/Manage-Property'
+import Manage from './realtor/Manage-Property'
 import { useContext } from 'react'
 import { AuthContext } from './context/authContext'
 import Register from './pages/Register'
@@ -19,6 +17,8 @@ import MatchUp from './pages/MatchUp'
 import PropertyDetails from './pages/PropertyDetails'
 import ResultSection from './components/ResultSection'
 import Profile from "./pages/ProfileSettings"
+import Layout from './components/RealtorLayout'
+
 function App() {
   const {currentUser} = useContext(AuthContext);
 
@@ -78,14 +78,12 @@ function App() {
 
 function RealtorRoutes() {
   return (
-    <Layout>
       <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/manage-property" element={<Manage />} />
-        <Route path="/inbox" element={<Inbox />} />
-        <Route path="/settings" element={<Settings />} />
+        <Route path="/dashboard" element={ <Layout><Dashboard /></Layout> } />
+        <Route path="/manage-property" element={<Layout><Manage /></Layout>} />
+        <Route path="/inbox" element={<Layout><Inbox /></Layout>} />
+        <Route path="/settings" element={<Layout><Settings /></Layout>} />
       </Routes>
-    </Layout>
   );
 }
 

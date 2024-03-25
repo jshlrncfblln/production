@@ -1,9 +1,8 @@
 export default function ManageProperty(){
     return(
-        <section>
-            <div>
-                <h1>this is the Manage Property</h1>
-            </div>
-        </section>
+        <div className="p-4 bg-yellow-500">
+            <h1 className="text-2xl font-bold">manage Property Page</h1>
+            <p>Welcome to the ManageProperty page!</p>
+        </div>
     )
 }
