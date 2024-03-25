@@ -217,7 +217,7 @@ function Navbar() {
                 <li>
                   <button
                     onClick={toggleLoginModal}
-                    className="rounded-lg bg-sky-500 px-8 py-1.5 hover:bg-sky-700"
+                    className="rounded-lg bg-sky-500 px-8 py-1.5 hover:bg-sky-700 text-white"
                   >
                     Login
                   </button>
@@ -298,8 +298,8 @@ function Navbar() {
           ) : (
                 <li>
                   <button
-                    onClick={toggleLoginModal}
-                    className="rounded-lg bg-sky-500 px-8 py-1.5 hover:bg-sky-700"
+                    onClick={toggleLoginModal}  
+                    className="rounded-lg text-white bg-sky-500 px-8 py-1.5 hover:bg-sky-700"
                   >
                     Login
                   </button>
