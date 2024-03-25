@@ -4,6 +4,7 @@ import Hero from '../components/Hero'
 import Offers from '../components/Offers'
 import Choose from '../components/Choose'
 import AboutUs from '../components/AboutUs'
+
 function Home(){
     return(
         <div>
@@ -12,7 +13,7 @@ function Home(){
             <Offers />
             <Choose />
             <AboutUs />
-            <Footer />
+            <Footer  />
         </div>
     )
 }

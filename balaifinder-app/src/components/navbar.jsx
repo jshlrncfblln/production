@@ -1,162 +1,56 @@
 import { Link, useMatch, useResolvedPath, useNavigate } from "react-router-dom";
-import { useState, useContext } from "react";
+import { useState, useContext,useEffect } from "react";
 import { AuthContext } from "../context/authContext";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import LoginModal from "./LoginModal"; // Import the LoginModal component
+import { Transition } from '@headlessui/react';
+import { FaUser } from "react-icons/fa";
 
-function LoginModal({ isOpen, onClose }) {
-  const [inputs, setInputs] = useState({
-    email: "",
-    password: "",
-  });
-  const [err, setErr] = useState(null);
-  const [showPassword, setShowPassword] = useState(true);
 
-  const navigate = useNavigate();
-  const { login } = useContext(AuthContext);
 
-  const handleChange = (e) => {
-    setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
-
-  const handleLogin = async (e) => {
-    e.preventDefault();
-
-    if (!inputs.email || !inputs.password) {
-      setErr("Please fill in all fields.");
-      return;
-    }
-
-    try {
-      await login(inputs);
-      navigate("/");
-      onClose(); // Close the modal upon successful login
-      toast.success('Login successful!');
-    } catch (err) {
-      setErr(err.response.data);
-    }
-  };
-
-  if (!isOpen) {
-    return null; // Return null if the modal is not open
-  }
-
-  return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-      <div
-        className="flex bg-white rounded-lg overflow-hidden mx-auto max-w-md w-full p-8 relative shadow-xl shadow-sky-600"
-        style={{ maxWidth: "600px" }}
-      >
-        <div
-          onClick={onClose}
-          className="absolute top-0 right-0 m-4 cursor-pointer"
-        >
-          <svg
-            className="h-6 w-6 text-gray-600"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M6 18L18 6M6 6l12 12"
-            ></path>
-          </svg>
-        </div>
-        <div className="hidden items-center justify-center text-center lg:flex lg:flex-col lg:w-1/2">
-          <h2 className="text-2xl font-bold text-gray-700">
-            Balai<span className="text-sky-500">Finder</span>
-          </h2>
-          <img
-            src="/assets/Balaifinder.png"
-            className="object-center object-cover"
-            alt=""
-          />
-        </div>
-        <div className="w-full lg:w-1/2">
-          <p className="text-xl text-gray-600 text-center">Welcome Back!</p>
-          <form onSubmit={handleLogin} className="mt-4">
-            {/* Email input */}
-            <div className="mt-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2">
-                Email Address
-              </label>
-              <input
-                type="email"
-                name="email"
-                onChange={handleChange}
-                className="bg-gray-200 text-gray-700 focus:outline-sky-600 focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
-              />
-            </div>
-            {/* Password input */}
-            <div className="mt-4">
-              <div className="flex justify-between">
-                <label className="block text-gray-700 text-sm font-bold mb-2">
-                  Password
-                </label>
-              </div>
-              <input
-                type={showPassword ? "text" : "password"}
-                name="password"
-                onChange={handleChange}
-                className="bg-gray-200 text-gray-700 focus:outline-sky-600 focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
-              />
-              <div className="mt-3">
-                <label
-                  className="inline-flex items-center"
-                  htmlFor="showPassCheck"
-                >
-                  <input
-                    type="checkbox"
-                    id="showPassCheck"
-                    checked={showPassword}
-                    onChange={togglePasswordVisibility}
-                    className="size-4 accent-sky-500 "
-                  />
-                  <span className="text-gray-700 text-sm font-bold ml-2">
-                    Show password
-                  </span>
-                </label>
-              </div>
-            </div>
-            {/* Error message */}
-            {err && <div className="mt-4 text-red-600">{err}</div>}
-            {/* Login button */}
-            <div className="mt-8">
-              <button
-                type="submit"
-                className="bg-sky-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-sky-500"
-              >
-                Login
-              </button>
-            </div>
-          </form>
-          <div className="mt-5 flex items-center justify-between">
-            <span className="border-b border-gray-500 w-1/5 md:w-1/4"></span>
-            <Link to="/register">
-              <p className="text-xs text-gray-500 uppercase">
-                Or Create Account
-              </p>
-            </Link>
-            <span className="border-b border-gray-500 w-1/5 md:w-1/4"></span>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 function Navbar() {
   const { currentUser, login, logout } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenLoginModal, setIsOpenLoginModal] = useState(false);
   const navigate = useNavigate();
+    // State to track whether the menu is open or closed
+  const [isOpenPopMenu, setIsOpenPopMenu] = useState(false);
+
+    // Function to toggle the menu open and closed
+  const togglePopMenu = () => {
+    setIsOpenPopMenu(!isOpenPopMenu);
+  };
+
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  useEffect(() => {
+    function handleScroll() {
+      setScrollPosition(window.pageYOffset);
+    }
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    function handleClick() {
+      if (scrollPosition > 0) {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }
+    }
+
+    document.addEventListener('click', handleClick);
+    return () => {
+      document.removeEventListener('click', handleClick);
+    };
+  }, [scrollPosition]);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -181,6 +75,12 @@ function Navbar() {
       toast.success('Logout successful!');
     } catch (error) {
       console.error("Error logging out:", error);
+    }
+  };
+  const handleClick = (e) => {
+    if (e.target.classList.contains('modal-button')) {
+      e.preventDefault();
+      setIsOpenLoginModal(!isOpenLoginModal);
     }
   };
 
@@ -271,7 +171,7 @@ function Navbar() {
               </li>
               <li>
                 <CustomLink
-                  to="/match_up"
+                  to="/matching"
                   className="underline-hover relative p-2 font-semibold"
                 >
                   Match Up
@@ -280,17 +180,44 @@ function Navbar() {
               {currentUser ? (
                 <li>
                   <button
-                    onClick={handleLogout}
-                    className="rounded-lg bg-sky-500 px-8 py-1.5"
-                  >
-                    Logout
+                    onClick={togglePopMenu}
+                    className="rounded-md px-2 py-2 hover:shadow-md">
+                      <FaUser />
                   </button>
+                  <Transition
+                      show={isOpenPopMenu}
+                      enter="transition-opacity duration-75"
+                      enterFrom="opacity-0"
+                      enterTo="opacity-100"
+                      leave="transition-opacity duration-150"
+                      leaveFrom="opacity-100"
+                      leaveTo="opacity-0"
+                    >
+                    <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                      <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                        {/* Menu items */}
+                        <Link to="/user-profile-settings"
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                          role="menuitem"
+                        >
+                          Profile Settings
+                        </Link>
+                        <a
+                          onClick={handleLogout}
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+                          role="menuitem"
+                        >
+                          Logout
+                        </a>
+                      </div>
+                    </div>
+                  </Transition>
                 </li>
               ) : (
                 <li>
                   <button
                     onClick={toggleLoginModal}
-                    className="rounded-lg bg-sky-500 px-8 py-1.5"
+                    className="rounded-lg bg-sky-500 px-8 py-1.5 hover:bg-sky-700 text-white"
                   >
                     Login
                   </button>
@@ -326,31 +253,58 @@ function Navbar() {
           </li>
           <li>
             <CustomLink
-              to="/match_up"
+              to="/matching"
               className="underline-hover relative p-2 font-semibold"
             >
               Match Up
             </CustomLink>
           </li>
           {currentUser ? (
-            <li>
-              <button
-                onClick={handleLogout}
-                className="hover:bg-sky-700 bg-sky-500 px-6 py-1.5 rounded-lg text-white"
-              >
-                Logout
-              </button>
-            </li>
+                <li>
+                  <button
+                    onClick={togglePopMenu}
+                    className="rounded-md px-2 py-2 hover:shadow-md">
+                      <FaUser />
+                  </button>
+                  <Transition
+                      show={isOpenPopMenu}
+                      enter="transition-opacity duration-75"
+                      enterFrom="opacity-0"
+                      enterTo="opacity-100"
+                      leave="transition-opacity duration-150"
+                      leaveFrom="opacity-100"
+                      leaveTo="opacity-0"
+                    >
+                    <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                      <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                        {/* Menu items */}
+                        <Link to="/user-profile-settings"
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                          role="menuitem"
+                        >
+                          Profile
+                        </Link>
+                        <a
+                          onClick={handleLogout}
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+                          role="menuitem"
+                        >
+                          Logout
+                        </a>
+                      </div>
+                    </div>
+                  </Transition>
+                </li>
           ) : (
-            <li>
-              <button
-                onClick={toggleLoginModal}
-                className="hover:bg-sky-700 bg-sky-500 px-6 py-1.5 rounded-lg text-white"
-              >
-                Login
-              </button>
-            </li>
-          )}
+                <li>
+                  <button
+                    onClick={toggleLoginModal}  
+                    className="rounded-lg text-white bg-sky-500 px-8 py-1.5 hover:bg-sky-700"
+                  >
+                    Login
+                  </button>
+                </li>
+              )}
         </ul>
         <LoginModal
           isOpen={isOpenLoginModal}

@@ -14,7 +14,7 @@ export default function AboutUs(){
                         <p className="mt-4 text-gray-600 text-lg">Hi there! we are Syntax Finders! We are a group of fourth-year students pursuing a Bachelor's degree in Computer Science at the University of Caloocan City. In our quest to apply our programming skills to real-world problems, we created BalaiFinder site for home buyers. Our platform is designed to help users find their ideal home by using our matching algorithm and matched them with properties that meet their specific criteria. Wether you're looking for a cozy apartment or a spacious house, our site simplifies the searching and matching process, making it easier for you to find your dream home. Join us on our mission to revolutionize the way people find homes!</p>
                         <div className="mt-8">
                             <Link to="/about">
-                                <button className="text-white bg-sky-700 px-5 py-3 rounded-lg hover:bg-sky-500 font-semibold">Learn more about us</button>
+                                <button className="text-white bg-sky-500 px-5 py-3 rounded-lg hover:bg-sky-700 hover:shadow-md hover:shadow-black font-semibold">Learn more about us</button>
                             </Link>
                         </div>
                     </div>

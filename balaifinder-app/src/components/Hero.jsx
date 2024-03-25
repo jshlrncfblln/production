@@ -19,7 +19,7 @@ function Hero() {
     // CSS styles for carousel images
     const imageStyle = {
         width: "736px",
-        height: "669px",
+        height: "450px",
         objectFit: "cover"
     };
 
@@ -34,7 +34,7 @@ function Hero() {
             <p className="py-4 text-lg text-gray-500 2xl:py-8 md:py-6 2xl:pr-5">
               Finding the right match can be challenging, whether you're looking for a partner, a job, or a place to live. Our platform simplifies this process by utilizing a sophisticated matching algorithm that takes into account your preferences, needs, and unique characteristics.
             </p>
-            <Link to='/match_up' class="mt-4">
+            <Link to='/matching' class="mt-4">
                 <button class="px-5 py-3 text-lg tracking-wider text-white bg-sky-500 rounded-lg md:px-8 hover:bg-sky-700 group"><span>Explore More</span> </button>
             </Link>           
           </div>
