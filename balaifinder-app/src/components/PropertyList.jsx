@@ -20,7 +20,7 @@ export default function PropLists(){
         <section className="w-fit mx-auto grid grid-cols lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-10">
                 {data.map((item) => (
                     <div key={item._id} class="w-72 bg-white shadow-md rounded-xl hover:shadow-sky-600 duration-500 hover:scale-105 hover:shadow-xl">
-                    <a href="/property-details">
+                    <a href="/details">
                         <img src="https://images.pexels.com/photos/1438832/pexels-photo-1438832.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
                         <div class="px-4 py-3 w-72">
                         <span class="text-gray-400 mr-3 uppercase text-xs">{item.type}</span>
