@@ -1,13 +1,13 @@
 
 
 
-export default function Choose(){
+export default function Features(){
     return(
-        <section class="">
+        <section class="mt-8">
             <div class="container max-w-xl p-6 mx-auto space-y-12 lg:px-8 lg:max-w-7xl">
                 <div>
-                <h2 class="text-3xl font-bold text-center sm:text-5xl">BalaiFinder's Features</h2>
-                <p class="max-w-3xl mx-auto mt-4 text-xl text-center ">Explore BalaiFinder's features that enhance your searching experience and make it even more exciting.</p>
+                <h2 class="text-3xl font-bold text-center sm:text-5xl">Balai<span className="text-sky-500">Finder's</span> Features</h2>
+                <p class="max-w-3xl mx-auto mt-4 text-xl text-center text-gray-500">Explore BalaiFinder's features that enhance your searching experience and make it even more exciting.</p>
                 </div>
                 <div class="grid lg:gap-8 lg:grid-cols-2 lg:items-center">
                 <div>
@@ -28,8 +28,8 @@ export default function Choose(){
                             </svg></div>
                         </div>
                         <div class="ml-4">
-                        <h4 class="text-lg font-medium leadi ">Advanced Matching Algorithms</h4>
-                        <p class="mt-2 ">Discover our improved matching algorithms that adapt to your preferences and provide even more personalized property suggestions.</p>
+                        <h4 class="text-lg font-semibold leadi ">Advanced Matching Algorithms</h4>
+                        <p class="mt-2 text-gray-600">Discover our improved matching algorithms that adapt to your preferences and provide even more personalized property suggestions.</p>
                         </div>
                     </div>
                     <div class="flex">
@@ -44,8 +44,8 @@ export default function Choose(){
                             </svg></div>
                         </div>
                         <div class="ml-4">
-                        <h4 class="text-lg font-medium leadi ">Variety of House Property</h4>
-                        <p class="mt-2 ">Access an extensive list of house property that suites in your ideal home.</p>
+                        <h4 class="text-lg font-semibold leadi ">Variety of House Property</h4>
+                        <p class="mt-2 text-gray-600">Access an extensive list of house property that suites in your ideal home.</p>
                         </div>
                     </div>
                     <div class="flex">
@@ -60,8 +60,8 @@ export default function Choose(){
                             </svg></div>
                         </div>
                         <div class="ml-4">
-                        <h4 class="text-lg font-medium leadi ">Apply for your Ideal House Property</h4>
-                        <p class="mt-2 ">After finding your ideal home, what's the next step? Apply for it so your ideal home can be yours</p>
+                        <h4 class="text-lg font-semibold leadi ">Apply for your Ideal House Property</h4>
+                        <p class="mt-2 text-gray-600">After finding your ideal home, what's the next step? Apply for it so your ideal home can be yours</p>
                         </div>
                     </div>
                     </div>

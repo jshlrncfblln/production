@@ -31,12 +31,17 @@ function Hero() {
             <h1 className="text-3xl font-semibold text-sky-500 xl:text-5xl lg:text-3xl">
               <span className="block w-full">Discover Your Perfect Match</span> with Our Advanced Matching Algorithm
             </h1>
-            <p className="py-4 text-lg text-gray-500 2xl:py-8 md:py-6 2xl:pr-5">
+            <p className="py-4 text-lg text-black 2xl:py-8 md:py-6 2xl:pr-5">
               Finding the right match can be challenging, whether you're looking for a partner, a job, or a place to live. Our platform simplifies this process by utilizing a sophisticated matching algorithm that takes into account your preferences, needs, and unique characteristics.
             </p>
-            <Link to='/matching' class="mt-4">
-                <button class="px-5 py-3 text-lg tracking-wider text-white bg-sky-500 rounded-lg md:px-8 hover:bg-sky-700 group"><span>Explore More</span> </button>
-            </Link>           
+            <div className='flex gap-4'>
+              <Link to='/matching' class="mt-4">
+                  <button class="px-5 py-3 text-lg tracking-wider text-white bg-sky-500 rounded-lg md:px-8 hover:bg-sky-700 hover:shadow-md hover:shadow-black group"><span>Find Match</span> </button>
+              </Link>
+              <Link to='/properties' class="mt-4">
+                  <button class="px-5 py-3 text-lg tracking-wider text-black bg-white outline outline-sky-500 outline-2 rounded-lg md:px-8 hover:bg-sky-700 hover:shadow-md hover:shadow-black hover:text-white hover:outline-none group"><span>See Properties</span> </button>
+              </Link>  
+            </div>         
           </div>
           <div className="mt-12 md:mt-0">
             <Slider {...settings}>
